@@ -41,7 +41,7 @@ locals {
 }
 
 resource "aws_s3_object" "file" {
-  for_each     = fileset(path.module, "mys3app/**/*.{html,css,js,mp4,png}")
+  for_each     = fileset(path.module, "mys3app/**/*.{html,css,js,mp4,png}") #mys3app is the folder that contains the objects to upload to bucket
   bucket       = aws_s3_bucket.bucket.id
   key          = replace(each.value, "/^mys3app//", "")
   source       = each.value
